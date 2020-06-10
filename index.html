@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meme Creator</title>
+    <script src="https://kit.fontawesome.com/fd3d034192.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/gallery.css">
+    <link rel="stylesheet" href="css/meme-gen.css">
+</head>
+
+<body onload="onInit()">
+    <header>
+        <section class="header-container container flex">
+            <div class="logo">
+                <h2>memegen</h2>
+            </div>
+            <nav>
+                <ul class="clean-list flex align-center">
+                    <li>
+                        <a href="#" onclick="onRevealGallery()">Galery</a>
+                    </li>
+                    <li>
+                        <a href="#">Memes</a>
+                    </li>
+                    <li>
+                        <a href="#">About</a>
+                    </li>
+                </ul>
+            </nav>
+        </section>
+    </header>
+
+    <main class="main-container">
+        <section class="gallery-container flex-col">
+            <nav class="gallery-nav"></nav>
+            <div class="memes-gallery gallery-grid flex flex-row wrap">
+            </div>
+        </section>
+        <section class="memes-creator-container flex">
+            <div class="canvas-container">
+                <canvas id="canvas"></canvas>
+            </div>
+            
+            <div class="meme-creator meme-grid grid">
+                <input type="text" name="lineText" placeholder="Insert Text Here" oninput="onDrawText(this.value)">
+                <button class="switch-lines-btn" title="Switch Lines" onclick="onSwitchLine()">
+                    <i class="fas fa-exchange-alt"></i></button>
+                <div class="text-edit">
+                    <button onclick="onChangeFontSize(1)" title="Increase font size">A+</button>
+                    <button onclick="onChangeFontSize(-1)" title="Decrease font size">A-</button>
+                    <button onclick="onChangeLineHeight(-10)" title="Move Line Up">A🠝</button>
+                    <button onclick="onChangeLineHeight(+10)" title="Move Line Down">A🠟</button>
+                </div>
+
+                <a class="download-meme" href="#" onclick="onDownloadCanvas(this)" download="">Download</a>
+
+            </div>
+        </section>
+    </main>
+
+
+    <footer class="footer container"></footer>
+
+
+    <script src="js/memes-controller.js"></script>
+    <script src="js/gallery-controller.js"></script>
+    <script src="js/memes-service.js"></script>
+    <script src="js/memes-storage.js"></script>
+    <script src="js/util-service.js"></script>
+</body>
+
+</html>

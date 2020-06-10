@@ -1,0 +1,20 @@
+/* .memes-gallery{
+    margin-top: 20px;
+} */
+
+.memes-gallery img{
+    width: 250px;
+    height: 250px;
+    margin: .5rem;
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+
+@media (max-width: 800px) {
+    .memes-gallery img {
+        width: 90px;
+        height: 90px;
+        margin: .25rem;
+    }
+}
