@@ -31,24 +31,43 @@ function createMeme(imgId) {
         lines: [
             {
                 txt: 'Insert Text Here',
-                size: 30,
+                size: 25,
                 align: 'center',
                 color: 'white',
                 strokeColor: 'black',
-                lineHeight: 25
+                font: 'impact',
+                lineHeight: 35
             },
-            // {
-            //     txt: 'Insert Text Here',
-            //     size: 30,
-            //     align: 'center',
-            //     color: 'white',
-            //     strokeColor: 'black',
-            //     lineHeight: canvas.height-25
-            // }
+            {
+                txt: 'Insert Text Here',
+                size: 20,
+                align: 'center',
+                color: 'red',
+                strokeColor: 'white',
+                font: 'impact',
+                lineHeight: canvas.height - 25
+            }
         ]
     }
 
     gMeme = meme;
+}
+
+function createLine() {
+    let line = {
+        txt: 'Insert Text Here',
+        size: 25,
+        align: 'center',
+        color: 'white',
+        strokeColor: 'black',
+        font: 'impact',
+        lineHeight: canvas.height / 2
+    }
+    gMeme.lines.push(line)
+}
+
+function setMeme(imgId) {
+    gMeme.selectedImgId = imgId
 }
 
 function getImgById(imgId) {
@@ -64,17 +83,43 @@ function getMeme() {
     return gMeme
 }
 function drawText(txt) {
-    gMeme.lines[gMeme.selectedLineIdx].txt = txt;    
+    gMeme.lines[gMeme.selectedLineIdx].txt = txt;
+    console.log(gMeme.lines[gMeme.selectedLineIdx].txt);
+
 }
 
 function switchLine() {
-    console.log('switch');
     gMeme.selectedLineIdx++;
     if (gMeme.selectedLineIdx >= gMeme.lines.length) gMeme.selectedLineIdx = 0;
+}
+
+function addTextLine() {
+    if (gMeme.lines.length === 3) return
+    createLine()
 }
 
 function changeFontSize(diff) {
     gMeme.lines[gMeme.selectedLineIdx].size += diff;
     console.log(gMeme.lines[gMeme.selectedLineIdx].size);
-    
+    drawMeme(getMeme().selectedImgId);
 }
+
+function setFontFamily(font) {
+    gMeme.lines[gMeme.selectedLineIdx].font = font;
+}
+
+function changeLineHeight(diff) {
+    var canvas = getCanvas()
+    if (gMeme.lines[gMeme.selectedLineIdx].lineHeight + diff <= 10 || gMeme.lines[gMeme.selectedLineIdx].lineHeight + diff >= canvas.height) return
+    gMeme.lines[gMeme.selectedLineIdx].lineHeight += diff;
+    drawMeme(getMeme().selectedImgId);
+}
+
+function setFillColor(color) {
+    gMeme.lines[gMeme.selectedLineIdx].color = color
+}
+
+function setStrokeColor(color) {
+    gMeme.lines[gMeme.selectedLineIdx].strokeColor = color
+}
+
