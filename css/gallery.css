@@ -3,8 +3,8 @@
 } */
 
 .memes-gallery img{
-    width: 250px;
-    height: 250px;
+    width: 200px;
+    height: 200px;
     margin: .5rem;
     border: 1px solid black;
     cursor: pointer;

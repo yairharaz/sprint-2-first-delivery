@@ -1,5 +1,7 @@
 'use strict';
 
+const KEY = gMemes;
+var gMemes = []
 var gImgs = [
     { id: 1, url: 'imgs/1.jpg', keywords: [] },
     { id: 2, url: 'imgs/2.jpg', keywords: [] },
@@ -31,18 +33,18 @@ function createMeme(imgId) {
         lines: [
             {
                 txt: 'Insert Text Here',
-                size: 25,
+                size: 35,
                 align: 'center',
-                color: 'white',
-                strokeColor: 'black',
+                color: 'red',
+                strokeColor: 'white',
                 font: 'impact',
                 lineHeight: 35
             },
             {
                 txt: 'Insert Text Here',
-                size: 20,
+                size: 30,
                 align: 'center',
-                color: 'red',
+                color: 'green',
                 strokeColor: 'white',
                 font: 'impact',
                 lineHeight: canvas.height - 25
@@ -56,14 +58,14 @@ function createMeme(imgId) {
 function createLine() {
     let line = {
         txt: 'Insert Text Here',
-        size: 25,
+        size: 35,
         align: 'center',
-        color: 'white',
+        color: 'yellow',
         strokeColor: 'black',
         font: 'impact',
         lineHeight: canvas.height / 2
     }
-    gMeme.lines.push(line)
+    gMeme.lines.splice(1, 0, line)
 }
 
 function setMeme(imgId) {
@@ -123,3 +125,20 @@ function setStrokeColor(color) {
     gMeme.lines[gMeme.selectedLineIdx].strokeColor = color
 }
 
+function canvasClicked(ev) {
+    const { offsetX: x, offsetY: y } = ev;
+    console.log(x, y);
+
+}
+
+function saveMeme(meme) {
+    gMemes.push(meme)
+    _saveMemeToLocalStorage(KEY,gMemes);
+}
+
+
+
+
+function _saveMemeToLocalStorage(KEY,gMemes){
+    saveToLocalStorage(KEY,gMemes);
+}

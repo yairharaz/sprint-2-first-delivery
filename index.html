@@ -13,27 +13,29 @@
 
 <body onload="onInit()">
     <header>
-        <div class="header-container container flex space-between align-center">
-            <div class="logo">
-                <h2>memegen</h2>
+        <div class="container">
+            <div class="header-container flex space-between align-center content">
+                <div class="logo">
+                    <h2>memegen</h2>
+                </div>
+                <nav class="main-nav">
+                    <ul class="clean-list flex">
+                        <li>
+                            <a onclick="onRevealGallery()" class="flex center align-center" href="#">Galery</a>
+                        </li>
+                        <li>
+                            <a class="flex center align-center" href="#">Memes</a>
+                        </li>
+                        <li>
+                            <a class="flex center align-center" href="#">About</a>
+                        </li>
+                    </ul>
+                </nav>
             </div>
-            <nav class="main-nav">
-                <ul class="clean-list flex">
-                    <li>
-                        <a onclick="onRevealGallery()" class="flex center align-center" href="#">Galery</a>
-                    </li>
-                    <li>
-                        <a class="flex center align-center" href="#">Memes</a>
-                    </li>
-                    <li>
-                        <a class="flex center align-center" href="#">About</a>
-                    </li>
-                </ul>
-            </nav>
         </div>
     </header>
 
-    <main class="main-container">
+    <main class="main-container content">
         <section class="gallery-container flex-col">
             <nav class="gallery-nav"></nav>
             <div class="memes-gallery gallery-grid flex flex-row wrap">
@@ -41,7 +43,7 @@
         </section>
         <section class="memes-creator-container flex">
             <div class="canvas-container">
-                <canvas id="canvas" height="480" width="480"></canvas>
+                <canvas id="canvas" height="480" width="480" onclick="onCanvasClicked(event)"></canvas>
             </div>
 
             <div class="meme-creator">
@@ -72,6 +74,7 @@
                             class="fas fa-align-right"></i></button>
                     <select onchange="onSetFontFamily(this.value)" title="Choose Your Favour Font"
                         style="font-family: Times New Roman">
+                        <option placeholder="Choose Font"></option>
                         <option value="Impact" style="font-family: Impact;">Impact</option>
                         <option value="Arial" style="font-family: Arial, Helvetica, sans-serif;">Arial</option>
                         <option value="Times New Roman" style="font-family: Times New Roman">Times New Roman</option>
@@ -85,15 +88,20 @@
                         <input type="color" onchange="onSetFillColor(this.value)">
                     </button>
                 </div>
-
-                <a class="download-meme" href="#" onclick="onDownloadCanvas(this)" download="">Download</a>
-
+                <div class="share-container grid">
+                    <a class="download-meme" href="#" onclick="onDownloadMeme(this)" download="">Download</a>
+                    <a class="share-meme" href="#" onclick="onShareMeme(this)" download="">Share</a>
+                    <a class="save-meme" href="#" onclick="onSaveMeme(this)" download="">Save</a>
+                </div>
             </div>
         </section>
     </main>
 
 
-    <footer class="footer container"></footer>
+    <footer class="footer container flex flex-col">
+        <section class="logo">memgen</section>
+        <section class="coffe-rights">all rights reserved 2020</section>
+    </footer>
 
 
     <script src="js/memes-controller.js"></script>

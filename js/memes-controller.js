@@ -7,18 +7,15 @@ function onInit() {
     gElCanvas = document.querySelector('#canvas');
     gCtx = gElCanvas.getContext('2d');
     renderGallery();
-    // resetMeme()
 }
 
 function drawMeme(imgId) {
-    var img = getImgById(+imgId);
-    console.log(img);    
+    var img = getImgById(+imgId);   
     drawImgFromlocal(img)
     
 }
 function drawCanvas(){
     var meme = getMeme()  
-    console.log('after image');
     meme.lines.forEach(line => {
         gCtx.strokeStyle = line.strokeColor;       
         gCtx.fillStyle = line.color;
@@ -46,7 +43,6 @@ function onChooseImg(imgId) {
     var elGallery = document.querySelector('.gallery-container');
     elGallery.style.display = 'none';
     createMeme(imgId);
-    console.log(getMeme());
     drawMeme(getMeme().selectedImgId) 
     
 }
@@ -55,20 +51,15 @@ function drawImgFromlocal(img) {
     var elImg = new Image();
     elImg.src = img.url;
     elImg.onload = () => {
-        console.log('img loaded');
         gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height)
         drawCanvas();
     }  
 }
 
 function onDrawText(txt) {
-    console.log('draw text');
     drawText(txt);
     drawMeme(getMeme().selectedImgId,txt) 
 }
-
-// drawMeme(gMeme.selectedImgId)  
-
 
 function getCanvas(){
     return gElCanvas
@@ -94,3 +85,17 @@ function onSetFontFamily(font){
     setFontFamily(font);
 }
 
+
+function onDownloadMeme(elLink) {
+    const data = gElCanvas.toDataURL();
+    elLink.href = data;
+    elLink.download = 'my_meme';
+}
+
+function onSaveMeme(elMeme){
+    saveMeme(elMeme);
+}
+
+function onCanvasClicked(ev){
+    canvasClicked(ev)
+}
