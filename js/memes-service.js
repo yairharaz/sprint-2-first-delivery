@@ -1,28 +1,7 @@
 'use strict';
 
-const KEY = gMemes;
+// const KEY = gMemes;
 var gMemes = []
-var gImgs = [
-    { id: 1, url: 'imgs/1.jpg', keywords: [] },
-    { id: 2, url: 'imgs/2.jpg', keywords: [] },
-    { id: 3, url: 'imgs/3.jpg', keywords: [] },
-    { id: 4, url: 'imgs/4.jpg', keywords: [] },
-    { id: 5, url: 'imgs/5.jpg', keywords: [] },
-    { id: 6, url: 'imgs/6.jpg', keywords: [] },
-    { id: 7, url: 'imgs/7.jpg', keywords: [] },
-    { id: 8, url: 'imgs/8.jpg', keywords: [] },
-    { id: 9, url: 'imgs/9.jpg', keywords: [] },
-    { id: 10, url: 'imgs/10.jpg', keywords: [] },
-    { id: 11, url: 'imgs/11.jpg', keywords: [] },
-    { id: 12, url: 'imgs/12.jpg', keywords: [] },
-    { id: 13, url: 'imgs/13.jpg', keywords: [] },
-    { id: 14, url: 'imgs/14.jpg', keywords: [] },
-    { id: 15, url: 'imgs/15.jpg', keywords: [] },
-    { id: 16, url: 'imgs/16.jpg', keywords: [] },
-    { id: 17, url: 'imgs/17.jpg', keywords: [] },
-    { id: 18, url: 'imgs/18.jpg', keywords: [] }
-];
-
 var gMeme;
 
 function createMeme(imgId) {
@@ -38,7 +17,7 @@ function createMeme(imgId) {
                 color: 'red',
                 strokeColor: 'white',
                 font: 'impact',
-                lineHeight: 35
+                lineHeight: 45
             },
             {
                 txt: 'Insert Text Here',
@@ -65,7 +44,8 @@ function createLine() {
         font: 'impact',
         lineHeight: canvas.height / 2
     }
-    gMeme.lines.splice(1, 0, line)
+    gMeme.lines.splice(1, 0, line);
+    drawMeme(getMeme().selectedImgId);
 }
 
 function setMeme(imgId) {
@@ -73,26 +53,23 @@ function setMeme(imgId) {
 }
 
 function getImgById(imgId) {
-    var img = gImgs.find(img => imgId === img.id);
+    var img = getImgs().find(img => imgId === img.id);
     return img
 }
 
-function getImgs() {
-    return gImgs
-}
 
 function getMeme() {
     return gMeme
 }
+
 function drawText(txt) {
     gMeme.lines[gMeme.selectedLineIdx].txt = txt;
-    console.log(gMeme.lines[gMeme.selectedLineIdx].txt);
-
 }
 
 function switchLine() {
     gMeme.selectedLineIdx++;
     if (gMeme.selectedLineIdx >= gMeme.lines.length) gMeme.selectedLineIdx = 0;
+    drawCanvas();
 }
 
 function addTextLine() {
@@ -100,9 +77,14 @@ function addTextLine() {
     createLine()
 }
 
+function removeTextLine() {
+    gMeme.lines.splice([gMeme.selectedLineIdx], 1);
+    drawMeme(getMeme().selectedImgId);
+    gMeme.selectedLineIdx = 0;
+}
+
 function changeFontSize(diff) {
     gMeme.lines[gMeme.selectedLineIdx].size += diff;
-    console.log(gMeme.lines[gMeme.selectedLineIdx].size);
     drawMeme(getMeme().selectedImgId);
 }
 
@@ -112,7 +94,8 @@ function setFontFamily(font) {
 
 function changeLineHeight(diff) {
     var canvas = getCanvas()
-    if (gMeme.lines[gMeme.selectedLineIdx].lineHeight + diff <= 10 || gMeme.lines[gMeme.selectedLineIdx].lineHeight + diff >= canvas.height) return
+    if (gMeme.lines[gMeme.selectedLineIdx].lineHeight + diff <= 25 ||
+        gMeme.lines[gMeme.selectedLineIdx].lineHeight + diff >= canvas.height - 2) return
     gMeme.lines[gMeme.selectedLineIdx].lineHeight += diff;
     drawMeme(getMeme().selectedImgId);
 }
@@ -127,18 +110,33 @@ function setStrokeColor(color) {
 
 function canvasClicked(ev) {
     const { offsetX: x, offsetY: y } = ev;
-    console.log(x, y);
+    var currLineIdx = gMeme.lines.findIndex(line => {
+        if (y <= line.lineHeight && y >= line.lineHeight - line.size) return line;
+    });
+    if (currLineIdx !== -1) {
+        gMeme.selectedLineIdx = currLineIdx;
+        focusOnLine(currLineIdx);
+    }
+    drawCanvas();
+}
+
+function focusOnLine(lineIdx) {
 
 }
 
-function saveMeme(meme) {
-    gMemes.push(meme)
-    _saveMemeToLocalStorage(KEY,gMemes);
+function setAlignText(align) {
+    gMeme.lines[gMeme.selectedLineIdx].align = align;
+    drawMeme(getMeme().selectedImgId);
 }
 
+function saveMeme() {
+    
+}
 
+function _saveMemeToLocalStorage(key, gMemes) {
+    saveToLocalStorage(key, gMemes);
+}
 
-
-function _saveMemeToLocalStorage(KEY,gMemes){
-    saveToLocalStorage(KEY,gMemes);
+function getMemeFromLocal(){
+    
 }

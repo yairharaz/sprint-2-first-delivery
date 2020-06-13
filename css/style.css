@@ -2,6 +2,13 @@
     box-sizing: border-box;
 }
 
+.canvas-container{
+    width: 480px;
+    height: 480px;
+    border: 1px solid black;
+    display: block;
+}
+
 /* FONTS */
 
 @font-face {
@@ -15,7 +22,6 @@ body {
 
 header {
     height: 65px;
-    /* margin-bottom: 50px; */
     padding-bottom: 20px;
 }
 
@@ -80,12 +86,19 @@ main >* {
 
 /* Helpers: */
 
+.full-screen {
+    height: 100vh;
+    width: 100%;
+}
+
 .container {
     margin: 0 auto;
     width: 100%;
     background-color: #ff7f00;
     color: white;
 }
+.margin{
+    margin: 0 auto;}
 
 .logo {
     margin-inline-start: 20px;
@@ -93,18 +106,6 @@ main >* {
 
 .clean-list {
     list-style: none;
-}
-
-.flex.align-center {
-    align-items: center;
-}
-
-.flex.center {
-    justify-content: center;
-}
-
-.flex.space-between {
-    justify-content: space-between;
 }
 
 /* .gallery-container{
@@ -149,10 +150,8 @@ main >* {
     display: grid;
 }
 
-/* .meme-grid{
-    grid-template-columns: repeat(5,60px) ;
-    grid-template-rows: repeat(7,60px);
-    grid-column-gap: 20px;
-    grid-row-gap: 10px;
-    margin-inline-start: 50px;
-} */
+@media (max-width: 800px){
+    html{
+        font-size: 18px;
+    }
+}

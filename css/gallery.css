@@ -10,6 +10,25 @@
     cursor: pointer;
 }
 
+.memes-gallery img:hover{
+    opacity: 0.7;
+}
+
+.hide{
+    visibility: hidden;
+}
+
+.gallery-nav a{
+    text-transform: capitalize ;
+    color: black;
+}
+
+.gallery-container input{
+    margin-bottom: 20px;
+    border-radius: 15px;
+    height: 40px;
+}
+
 
 @media (max-width: 800px) {
     .memes-gallery img {

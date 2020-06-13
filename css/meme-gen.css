@@ -1,7 +1,13 @@
+/* .canvas-container{
+    width: 480px;
+    height: 480px;
+    margin: 0 auto;
+} */
+
 canvas {
     border: 3px solid black;
-    margin-inline-end: 50px;
-    margin-inline-start: 20px;
+    /* margin-inline-end: 50px;
+    margin-inline-start: 20px; */
 }
 
 /* label{
@@ -13,7 +19,10 @@ canvas {
 } */
 
 button {
-    font-size: 1rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    border: none;
+    background-color: #fff;
     outline: none;
     border-radius: 20px;
     cursor: pointer;
@@ -29,6 +38,11 @@ select {
 .memes-creator-container {
     display: none;
 }
+
+.meme-creator button:hover{
+    opacity: 0.5;
+}
+
 
 /* Layouts */
 
@@ -46,6 +60,7 @@ select {
 .line-edit-conatiner input {
     font-size: 1.5rem;
     grid-column: 1/-1;
+    border-radius: 15px;
 }
 
 .add-line-btn {
@@ -95,7 +110,7 @@ select {
 
 .align-left-btn {
     grid-row: 1/2;
-    grid-column: 3/4;
+    grid-column: 5/6;
 }
 
 .align-center-btn {
@@ -105,7 +120,7 @@ select {
 
 .align-right-btn {
     grid-row: 1/2;
-    grid-column: 5/6;
+    grid-column: 3/4;
 }
 
 .text-edit-container select {
@@ -154,4 +169,23 @@ button.color {
     height: 100%;
     grid-column: 2/3;
     grid-row: 1/2;
+}
+
+.align{
+    transform: rotate(180deg);
+}
+
+@media (max-width: 800px) {
+    .memes-creator-container{
+        flex-direction: column;
+    }
+    .canvas-container{
+        height: 300px;
+        width: 300px;
+    }
+    canvas{
+        height: 300px;
+        width: 300px; 
+        margin-bottom: 20px;
+    }
 }

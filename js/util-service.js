@@ -1,10 +1,10 @@
 'use strict';
-function saveToLocalStorage(KEY,val){
+function saveToLocalStorage(key,val){
     var json = JSON.stringify(val)
-    localStorage.setItem(KEY,json);
+    localStorage.setItem(key,json);
 }
 
-function getFromLocalStorage(KEY){
-    var memes = JSON.parse(localStorage.getItem(KEY));
-    return memes
+function getFromLocalStorage(key){
+    var json = JSON.parse(localStorage.getItem(key));
+    return json
 }
