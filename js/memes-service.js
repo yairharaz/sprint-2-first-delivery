@@ -11,7 +11,7 @@ function createMeme(imgId) {
         selectedLineIdx: 0,
         lines: [
             {
-                txt: 'Insert Text Here',
+                txt: '',
                 size: 35,
                 align: 'center',
                 color: 'red',
@@ -20,7 +20,7 @@ function createMeme(imgId) {
                 lineHeight: 45
             },
             {
-                txt: 'Insert Text Here',
+                txt: '',
                 size: 30,
                 align: 'center',
                 color: 'green',
@@ -36,7 +36,7 @@ function createMeme(imgId) {
 
 function createLine() {
     let line = {
-        txt: 'Insert Text Here',
+        txt: '',
         size: 35,
         align: 'center',
         color: 'yellow',

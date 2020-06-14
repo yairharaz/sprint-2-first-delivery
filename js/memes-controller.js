@@ -34,15 +34,22 @@ function drawCanvas() {
 }
 
 function resizeCanvas() {
-    var elContainer = document.querySelector('.canvas-container');
-    console.dir(elContainer);
+    var elContainer = document.querySelector('.canvas-container');    
     gElCanvas.width = elContainer.offsetWidth;
     gElCanvas.height = elContainer.offsetHeight;
-    // }
+    drawCanvas()
 }
 
 function onSetStrokeColor(color) {
     setStrokeColor(color)
+}
+
+function onPaletteClicked(){
+    document.querySelector('.fill-color-input').click();    
+}
+
+function onStrokeClicked(){
+    document.querySelector('.stroke-color-input').click();
 }
 
 function onSetFillColor(color) {

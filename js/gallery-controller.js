@@ -20,6 +20,7 @@ function onRevealGallery() {
     setFilterByKeyword('all');
     var elMemeCreator = document.querySelector('.memes-creator-container');
     elMemeCreator.style.display = 'none';
+    document.body.classList.remove('menu-open');
 }
 
 function renderKeywords() {
@@ -39,22 +40,30 @@ function renderKeywords() {
 
 function onSetFilterByKeyword(keyword) {
     setFilterByKeyword(keyword);
+    if (gIsShowMore) onShowMore();    
 }
 
 function onSetFilterBySearch(word){
-    console.log(word);
-    word = word.toLowerCase();
-    var keywords = getKeywords();
-    if (!keywords[word]) return;
-    else setFilterByKeyword(word);
+    var currWord = word.toLowerCase();
+    var keywords = getKeywords(); 
+    if (currWord === 'all') setFilterByKeyword(currWord);
+    if (keywords[currWord] === undefined) return;
+    setFilterByKeyword(currWord);
+    if (gIsShowMore) onShowMore();
 }
 
 function onShowMore(){
     showMore(gIsShowMore);
     if (!gIsShowMore) {
         document.querySelector('.show-more').innerText = 'hide...';
+        document.querySelector('.search-container').classList.add('expand-keywords');
     }else{
         document.querySelector('.show-more').innerText = 'show more...';
+        document.querySelector('.search-container').classList.remove('expand-keywords');
     }
     gIsShowMore = !gIsShowMore;
+}
+
+function onToggleMenu(){
+    toggleMenu();
 }

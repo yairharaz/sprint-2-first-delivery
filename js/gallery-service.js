@@ -52,9 +52,7 @@ function getImgs() {
 
 }
 
-function setFilterByKeyword(keyword) {
-    console.log(keyword);
-    
+function setFilterByKeyword(keyword) {    
     keyword = keyword.toLowerCase();
     if (keyword !== 'all') gKeywords[keyword] += 1;
     gFilterBy = keyword.toLowerCase();
@@ -77,4 +75,8 @@ function showMore(isShowMore) {
         gKeywordsToShow = 5;
         renderKeywords();
     }
+}
+
+function toggleMenu(){
+    document.body.classList.toggle('menu-open');
 }
