@@ -121,7 +121,7 @@ function onDownloadMeme(elLink) {
 }
 
 function onSaveMeme(elMeme) {
-    
+    saveMeme(elMeme);
 }
 
 function onCanvasClicked(ev) {
@@ -130,5 +130,5 @@ function onCanvasClicked(ev) {
 }
 
 function onGetMemeFromLocal(){
-    
+    getMemeFromLocal()
 }

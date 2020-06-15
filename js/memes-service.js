@@ -11,7 +11,7 @@ function createMeme(imgId) {
         selectedLineIdx: 0,
         lines: [
             {
-                txt: '',
+                txt: 'insert your text here',
                 size: 35,
                 align: 'center',
                 color: 'red',
@@ -20,7 +20,7 @@ function createMeme(imgId) {
                 lineHeight: 45
             },
             {
-                txt: '',
+                txt: 'insert your text here',
                 size: 30,
                 align: 'center',
                 color: 'green',
@@ -36,7 +36,7 @@ function createMeme(imgId) {
 
 function createLine() {
     let line = {
-        txt: '',
+        txt: 'insert your text here',
         size: 35,
         align: 'center',
         color: 'yellow',
@@ -130,7 +130,7 @@ function setAlignText(align) {
 }
 
 function saveMeme() {
-    
+    _saveMemeToLocalStorage('myMemes', gMemes)
 }
 
 function _saveMemeToLocalStorage(key, gMemes) {
@@ -138,5 +138,5 @@ function _saveMemeToLocalStorage(key, gMemes) {
 }
 
 function getMemeFromLocal(){
-    
+    getFromLocalStorage(myMeme)
 }
